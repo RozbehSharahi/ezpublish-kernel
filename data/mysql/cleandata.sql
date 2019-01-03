@@ -1364,6 +1364,7 @@ INSERT INTO `ezpolicy_limitation_value` (`id`, `limitation_id`, `value`) VALUES 
 INSERT INTO `ezpolicy_limitation_value` (`id`, `limitation_id`, `value`) VALUES (479,253,'1766001124');
 INSERT INTO `ezpolicy_limitation_value` (`id`, `limitation_id`, `value`) VALUES (480,254,'4');
 INSERT INTO `ezpolicy_limitation_value` (`id`, `limitation_id`, `value`) VALUES (481,255,'1');
+INSERT INTO `ezpolicy_limitation_value` (`id`, `limitation_id`, `value`) VALUES (482,251,'3');
 
 INSERT INTO `ezrole` (`id`, `is_new`, `name`, `value`, `version`) VALUES (1,0,'Anonymous','',0);
 INSERT INTO `ezrole` (`id`, `is_new`, `name`, `value`, `version`) VALUES (2,0,'Administrator','0',0);
