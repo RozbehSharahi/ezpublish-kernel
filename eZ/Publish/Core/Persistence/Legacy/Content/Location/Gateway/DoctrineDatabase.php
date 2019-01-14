@@ -1602,5 +1602,4 @@ class DoctrineDatabase extends Gateway
 
         return $queryBuilder;
     }
-
 }
