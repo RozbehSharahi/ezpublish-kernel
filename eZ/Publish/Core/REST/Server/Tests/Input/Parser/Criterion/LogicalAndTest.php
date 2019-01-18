@@ -61,6 +61,14 @@ class LogicalAndTest extends BaseTest
     }
 
     /**
+     * @expectedException \eZ\Publish\Core\REST\Common\Exceptions\Parser
+     */
+    public function testThrowsExceptionOnInvalidAndStatement()
+    {
+        $this->internalGetParser()->parse(['AND' => 'Should be an array'], new ParsingDispatcher());
+    }
+
+    /**
      * @return Parser\Criterion\LogicalAnd
      */
     protected function internalGetParser()

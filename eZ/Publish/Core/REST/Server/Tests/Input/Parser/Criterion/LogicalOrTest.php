@@ -73,6 +73,14 @@ class LogicalOrTest extends BaseTest
     }
 
     /**
+     * @expectedException \eZ\Publish\Core\REST\Common\Exceptions\Parser
+     */
+    public function testThrowsExceptionOnInvalidAndStatement()
+    {
+        $this->internalGetParser()->parse(['OR' => 'Wrong type'], new ParsingDispatcher());
+    }
+
+    /**
      * @return Parser\Criterion\LogicalOr
      */
     protected function internalGetParser()
