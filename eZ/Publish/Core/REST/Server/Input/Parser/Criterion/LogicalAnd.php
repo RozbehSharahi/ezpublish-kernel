@@ -65,16 +65,17 @@ class LogicalAnd extends CriterionParser
                 foreach ($criterion as $criterionElement) {
                     $criteria[] = [
                         'type' => $type,
-                        'data' => $criterionElement
+                        'data' => $criterionElement,
                     ];
                 }
             } else {
                 $criteria[] = [
                     'type' => $type,
-                    'data' => $criterion
+                    'data' => $criterion,
                 ];
             }
         }
+
         return $criteria;
     }
 
@@ -92,6 +93,7 @@ class LogicalAnd extends CriterionParser
                 return false;
             }
         }
+
         return true;
     }
 }

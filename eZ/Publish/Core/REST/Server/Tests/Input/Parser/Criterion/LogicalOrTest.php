@@ -6,7 +6,6 @@
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-
 namespace eZ\Publish\Core\REST\Server\Tests\Input\Parser\Criterion;
 
 use eZ\Publish\API\Repository\Values\Content;
@@ -16,27 +15,26 @@ use eZ\Publish\Core\REST\Server\Tests\Input\Parser\BaseTest;
 
 class LogicalOrTest extends BaseTest
 {
-
     /**
-     * Test parsing
+     * Test parsing.
      */
     public function testParseLogicalOr()
     {
         // This is what xml parser is right now creating out of
-        // <OR>
-        //   <ContentTypeIdentifierCriterion>author</ContentTypeIdentifierCriterion>
-        //   <ContentTypeIdentifierCriterion>book</ContentTypeIdentifierCriterion>
-        //   <Field>
-        //     <name>title</name>
-        //     <operator>EQ</operator>
-        //     <value>Contributing to projects</value>
-        //   </Field>
-        //   <Field>
-        //     <name>title</name>
-        //     <operator>EQ</operator>
-        //     <value>Contributing to projects</value>
-        //   </Field>
-        // </OR>
+//         <OR>
+//           <ContentTypeIdentifierCriterion>author</ContentTypeIdentifierCriterion>
+//           <ContentTypeIdentifierCriterion>book</ContentTypeIdentifierCriterion>
+//           <Field>
+//             <name>title</name>
+//             <operator>EQ</operator>
+//             <value>Contributing to projects</value>
+//           </Field>
+//           <Field>
+//             <name>title</name>
+//             <operator>EQ</operator>
+//             <value>Contributing to projects</value>
+//           </Field>
+//         </OR>
         $logicalAndParsedFromXml = [
             'OR' => [
                 'ContentTypeIdentifierCriterion' => [
@@ -47,13 +45,13 @@ class LogicalOrTest extends BaseTest
                     0 => [
                         'name' => 'title',
                         'operator' => 'EQ',
-                        'value' => 'Contributing to projects'
+                        'value' => 'Contributing to projects',
                     ],
                     1 => [
                         'name' => 'title',
                         'operator' => 'EQ',
-                        'value' => 'Contributing to projects'
-                    ]
+                        'value' => 'Contributing to projects',
+                    ],
                 ],
             ],
         ];
@@ -65,7 +63,7 @@ class LogicalOrTest extends BaseTest
 
         $result = $this->internalGetParser()->parse($logicalAndParsedFromXml, new ParsingDispatcher([
             'application/vnd.ez.api.internal.criterion.ContentTypeIdentifier' => $parserMock,
-            'application/vnd.ez.api.internal.criterion.Field' => $parserMock
+            'application/vnd.ez.api.internal.criterion.Field' => $parserMock,
         ]));
 
         self::assertInstanceOf(Content\Query\Criterion\LogicalOr::class, $result);
