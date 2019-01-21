@@ -16,20 +16,29 @@ use eZ\Publish\Core\REST\Server\Tests\Input\Parser\BaseTest;
 class LogicalAndTest extends BaseTest
 {
     /**
-     * Test parsing.
+     * Logical parsing of AND statement.
+     *
+     * Notice regarding multiple criteria of same type:
+     *
+     * The XML decoder of EZ is not creating numeric arrays, instead using the tag as the array key. See
+     * variable $logicalAndParsedFromXml. This causes the ContentTypeIdentifierCriterion-Tag to appear as one-element
+     * (type numeric array) and two criteria configuration inside. The logical or parser will take care
+     * of this and return a flatt LogicalAnd criterion with 3 criteria inside.
+     *
+     * ```
+     * <AND>
+     *   <ContentTypeIdentifierCriterion>author</ContentTypeIdentifierCriterion>
+     *   <ContentTypeIdentifierCriterion>book</ContentTypeIdentifierCriterion>
+     *   <Field>
+     *     <name>title</name>
+     *     <operator>EQ</operator>
+     *     <value>Contributing to projects</value>
+     *   </Field>
+     * </AND>
+     * ```
      */
     public function testParseLogicalAnd()
     {
-        // This is what xml parser is right now creating out of
-        // <AND>
-        //   <ContentTypeIdentifierCriterion>author</ContentTypeIdentifierCriterion>
-        //   <ContentTypeIdentifierCriterion>book</ContentTypeIdentifierCriterion>
-        //   <Field>
-        //     <name>title</name>
-        //     <operator>EQ</operator>
-        //     <value>Contributing to projects</value>
-        //   </Field>
-        // </AND>
         $logicalAndParsedFromXml = [
             'AND' => [
                 'ContentTypeIdentifierCriterion' => [
